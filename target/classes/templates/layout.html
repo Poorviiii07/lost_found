@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${title}">Lost & Found</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
@@ -17,6 +18,7 @@
             <li><a th:href="@{/lost/add}">Report Lost</a></li>
             <li><a th:href="@{/found/add}">Report Found</a></li>
 
+            <!-- Show Login/Register only if user is not logged in -->
             <li th:if="${#request.remoteUser == null}">
                 <a th:href="@{/login}">Login</a>
             </li>
@@ -24,7 +26,8 @@
                 <a th:href="@{/register}">Register</a>
             </li>
 
-            <li th:if="${#request.remoteUser}">
+            <!-- Show Logout only if user is logged in -->
+            <li th:if="${#request.remoteUser != null}">
                 <a th:href="@{/logout}">Logout</a>
             </li>
         </ul>
@@ -32,7 +35,8 @@
 </header>
 
 <main>
-    <div th:insert="${view}"></div>
+    <!-- Insert the view fragment here -->
+    <div th:replace="${view} :: content"></div>
 </main>
 
 <footer>
