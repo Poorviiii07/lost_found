@@ -1,14 +1,33 @@
 <div th:fragment="content">
-    <h2>Found Items</h2>
+    <h2 class="mb-4">Found Items</h2>
 
-    <div class="item-list">
-        <div class="item-card" th:each="item : ${foundItems}">
-            <h3 th:text="${item.itemName}"></h3>
-            <p th:text="${item.description}"></p>
-            <p><strong>Date:</strong> <span th:text="${item.date}"></span></p>
-            <p><strong>Location:</strong> <span th:text="${item.location}"></span></p>
+    <!-- If there are no items -->
+    <div th:if="${#lists.isEmpty(foundItems)}">
+        <p>No found items to display.</p>
+    </div>
 
-            <a th:href="@{'/item/' + ${item.id}}" class="btn-small">View Details</a>
+    <!-- List of found items -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" th:if="${!#lists.isEmpty(foundItems)}">
+        <div class="col" th:each="item : ${foundItems}">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${item.itemName}">Item Name</h5>
+                    <p class="card-text" th:text="${item.description}">Description</p>
+                    <p class="card-text">
+                        <strong>Date:</strong>
+                        <span th:text="${#dates.format(item.date,'dd/MM/yyyy')}">Date</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>Location:</strong>
+                        <span th:text="${item.location}">Location</span>
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a th:href="@{/item/{id}(id=${item.id})}" class="btn btn-primary btn-sm w-100">
+                        View Details
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
