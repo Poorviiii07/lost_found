@@ -2,18 +2,20 @@
     <h2>Report Lost Item</h2>
 
     <form th:action="@{/lost/add}" method="post">
-        <label>Item Name:</label>
-        <input type="text" name="itemName" required>
 
-        <label>Description:</label>
-        <textarea name="description" required></textarea>
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" name="itemName" placeholder="Enter item name" required>
 
-        <label>Location:</label>
-        <input type="text" name="location" required>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" placeholder="Enter description" required></textarea>
 
-        <label>Date Lost:</label>
-        <input type="date" name="date" required>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" placeholder="Enter location" required>
 
-        <button class="btn">Submit</button>
+        <label for="date">Date Lost:</label>
+        <input type="date" id="date" name="date" required>
+
+        <button type="submit" class="btn">Submit</button>
+
     </form>
 </div>
