@@ -24,8 +24,9 @@ public class AuthController {
             @RequestParam String password,
             HttpSession session) {
 
-        if (userService.validateUser(username, password)) {
-            session.setAttribute("user", username);
+        User user = userService.validateUser(username, password);
+        if (user != null) {
+            session.setAttribute("user", user);
             return "redirect:/";
         }
         return "redirect:/login?error=true";
@@ -41,7 +42,10 @@ public class AuthController {
             @RequestParam String username,
             @RequestParam String password) {
 
-        userService.register(username, password);
+        boolean success = userService.register(username, password);
+        if (!success) {
+            return "redirect:/register?error=true";
+        }
         return "redirect:/login?registered=true";
     }
 
