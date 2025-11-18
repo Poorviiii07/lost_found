@@ -1,9 +1,18 @@
-<div th:fragment="content">
-    <h2 th:text="${item.itemName}"></h2>
+<div th:fragment="content" class="container py-4">
+    <h2 class="mb-3" th:text="${item.itemName}">Item Name</h2>
 
-    <p><strong>Description:</strong> <span th:text="${item.description}"></span></p>
-    <p><strong>Date:</strong> <span th:text="${item.date}"></span></p>
-    <p><strong>Location:</strong> <span th:text="${item.location}"></span></p>
+    <p>
+        <strong>Description:</strong>
+        <span th:text="${item.description}">Item description</span>
+    </p>
+    <p>
+        <strong>Date:</strong>
+        <span th:text="${#dates.format(item.date,'dd/MM/yyyy')}">Date</span>
+    </p>
+    <p>
+        <strong>Location:</strong>
+        <span th:text="${item.location}">Location</span>
+    </p>
 
-    <button class="btn">Contact User</button>
+    <a href="#" class="btn btn-primary mt-3">Contact User</a>
 </div>
