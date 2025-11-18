@@ -1,19 +1,27 @@
 <div th:fragment="content">
     <h2>Report Found Item</h2>
 
-    <form th:action="@{/found/add}" method="post">
-        <label>Item Name:</label>
-        <input type="text" name="itemName" required>
+    <form th:action="@{/found/add}" th:object="${foundItem}" method="post">
+        <div class="form-group">
+            <label for="itemName">Item Name:</label>
+            <input type="text" th:field="*{itemName}" id="itemName" class="form-control" placeholder="Enter item name" required>
+        </div>
 
-        <label>Description:</label>
-        <textarea name="description" required></textarea>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea th:field="*{description}" id="description" class="form-control" placeholder="Enter description" required></textarea>
+        </div>
 
-        <label>Location Found:</label>
-        <input type="text" name="location" required>
+        <div class="form-group">
+            <label for="location">Location Found:</label>
+            <input type="text" th:field="*{location}" id="location" class="form-control" placeholder="Enter location" required>
+        </div>
 
-        <label>Date Found:</label>
-        <input type="date" name="date" required>
+        <div class="form-group">
+            <label for="date">Date Found:</label>
+            <input type="date" th:field="*{date}" id="date" class="form-control" required>
+        </div>
 
-        <button class="btn">Submit</button>
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>
 </div>
